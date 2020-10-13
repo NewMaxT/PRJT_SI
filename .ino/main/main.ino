@@ -5,24 +5,24 @@
 int gps_hours = 0;
 int gps_minutes = 0;
 int gps_seconds = 0;
+
 String tpe_sport = "Velo";
 String gps_loc = "N° JKJFGD";
+
 String message_Content = String("J'ai chuté à :") + tpe_sport + String("GPS : ") + gps_loc + String(" Ceci est un message automatisée par un système de détection de chute expérimental");
 char message_CharContent = message_Content.c_str();
+
 #define PHONE_NUMBER  "+33643684909"
-#define MESSAGE  message_CharContent
-
-/* Definition post-process des modules */
-
+#define MESSAGE "Message remplacement l'actuel Erreur de conversion const* char to char"
 
 DFRobot_SIM808 sim808(&Serial);
 
-
-
+/* Definition fonctions secondaires */
 
 boolean getChute() {
   //verifie si on chute
   //plus tard
+  return false;
 };
 
 void SendSMS() {
@@ -36,7 +36,7 @@ void Call() {
 }
 
 
-void upddateGPS() {
+void updateGPS() {
     if(sim808.attachGPS()) {
         Serial.println("Le GPS s'active");
     }
@@ -47,33 +47,26 @@ void upddateGPS() {
   }
 }
 
-void getGPS() {
+void getGPS() { // https://github.com/DFRobot/DFRobot_SIM808/blob/e13db3d4b80bd60c18ead13607f72c9947c34491/examples/SIM808_GetGPS/SIM808_GetGPS.ino#L58
    if (sim808.getGPS()) {
-      Serial.print(sim808.GPSdata.year);
-      Serial.print("/");
-      Serial.print(sim808.GPSdata.month);
-      Serial.print("/");
-      Serial.print(sim808.GPSdata.day);
-      Serial.print(" ");
-      Serial.print(sim808.GPSdata.hour);
-      Serial.print(":");
-      Serial.print(sim808.GPSdata.minute);
-      Serial.print(":");
-      Serial.print(sim808.GPSdata.second);
-      Serial.print(":");
-      Serial.println(sim808.GPSdata.centisecond);
-      Serial.print("latitude :");
-      Serial.println(sim808.GPSdata.lat);
-      Serial.print("longitude :");
-      Serial.println(sim808.GPSdata.lon);
-      Serial.print("speed_kph :");
-      Serial.println(sim808.GPSdata.speed_kph);
-      Serial.print("heading :");
-      Serial.println(sim808.GPSdata.heading);
-      Serial.println();
-      sim808.detachGPS();
+     // Latitude
+    sim808.latitudeConverToDMS();
+    Serial.print(sim808.latDMS.degrees);
+    Serial.print(sim808.latDMS.minutes);
+    Serial.print(sim808.latDMS.seconds,6);
+    Serial.println(sim808.GPSdata.lon,6);
+     
+    // Longitude
+    sim808.LongitudeConverToDMS();
+    Serial.print(sim808.longDMS.degrees);
+    Serial.print(sim808.longDMS.minutes);
+    Serial.print(sim808.longDMS.seconds,6);
 }
+  
+int getSpeed() {
+  return sim808.GPSdata.speed_kph
 }
+  
 bool updateSim() {
       while(!sim808.init()) {
         delay(1000);
