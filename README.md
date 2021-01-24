@@ -24,5 +24,8 @@ Cahier des charges et des tâches :
   - Maximiser la durée de la batterie
   - Diminuer les risques de "fausses alertes"
   
+  - Le capteur gyroscopique doit pouvoir lire une valeur supérieur à 15G-Force
+  - L'étallonage de données doit être précise
+  
   
   
