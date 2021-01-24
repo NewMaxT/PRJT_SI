@@ -13,7 +13,7 @@ Librairies et Wikis:
  
  
 Résumé du projet :
-  Boitier permettant de détecter une chute par la détection d'une forte accélération de la personne le portant. Favorisé dans les sports à risques comme le ski, le vtt "downhill", ...
+  Boitier permettant de détecter une chute par la détection d'une forte force cinétique inhabituelle de la personne le portant. Favorisé dans les sports à risques comme le ski, le vtt "downhill", ...
   
   
 Cahier des charges et des tâches :
