@@ -13,7 +13,7 @@ String message_Content = String("J'ai chuté à :") + tpe_sport + String("GPS : 
 char message_CharContent = message_Content.c_str();
 
 #define PHONE_NUMBER  "+33643684909"
-#define MESSAGE "Message remplacement l'actuel Erreur de conversion const* char to char"
+#define MESSAGE "Message temporaire censé inclure les coordonnées d'une variable String"  /* ERREUR DE CONVERSION const* char to char. Modification librairies */
 
 DFRobot_SIM808 sim808(&Serial);
 
@@ -81,11 +81,19 @@ void setup() {
    Serial.begin(9600);
    updateSim();
    if updateSim() == false {
-    // Activer LED ERREUR FATALE
+     fatal_error(true);
     break;
    }
 }
-   
+
+bool fatal_error(bool state_value) {
+  if state_value == true {
+  } else if { 
+    
+  } else {
+    
+  }
+}
 void loop() {
     if(!getChute()) {
       return;
